@@ -32,7 +32,7 @@ let formulaNumber = "";
 let result;
 
 function formulaDisplay() {
-    formula.innerHTML = `<span class="formula-only">${formulaNumber}</span><br><span class="result">${result}</span>`;
+    formula.innerHTML = `<span class="formula-only">=${formulaNumber}</span><br><span class="result">${result}</span>`;
     // 式の計算結果を表示
 }
 
