@@ -1,0 +1,40 @@
+body{
+    margin: 0;
+    font-family: "Jost", "NotoSans JP", "sans-serif";
+    color: white;
+    background-color: black;
+    user-select: none;
+}
+.formula{
+    height: calc(100vh / 6 - 10px);
+    font-size: 7vh;
+    line-height: 1em;
+    text-align: right;
+    opacity: 1;
+}
+.equal .formula-only{
+    opacity: .5;
+}
+.result{
+    opacity: .5;
+}
+.equal .result{
+    opacity: 1;
+}
+.keypads div{
+    width: calc(100vw / 4 - 10px);
+    height: calc(100vh / 6 - 10px);
+    font-size: 10vh;
+    margin: 5px;
+    outline: transparent solid;
+    border-radius: 40px;
+    text-align: center;
+    background-color: transparent;
+    float: left;
+}
+.keypads div :active{
+    border-radius: 100vh;
+}
+.keypads span{
+    font-size: 12.5vh;
+}
