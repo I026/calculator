@@ -1,0 +1,9 @@
+{
+    "name": "Number Magic",
+    "short_name": "Magic",
+    "theme_color": "#000000",
+    "background_color": "#000000",
+    "display": "fullscreen",
+    "orientation": "natural",
+    "start_url": "https://i026.github.io/calculator/"
+  }
