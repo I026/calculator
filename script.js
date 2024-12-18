@@ -25,6 +25,7 @@ const addition = document.getElementById("addition");
 const subtraction = document.getElementById("subtraction");
 const multiply = document.getElementById("multiply");
 const division = document.getElementById("division");
+const decimalPoint = document.getElementById("decimalPoint");
 const backspace = document.getElementById("backspace");
 const equal = document.getElementById("equal");
 
@@ -32,8 +33,16 @@ let formulaNumber = "";
 let result;
 
 function formulaDisplay() {
-    formula.innerHTML = `<span class="formula-only">=${formulaNumber}</span><br><span class="result">${result}</span>`;
+    formula.innerHTML = `<span class="formula-only">${formulaNumber}</span><br><span class="result">${result}</span>`;
     // 式の計算結果を表示
+}
+
+function formulaDisplayReset() {
+    formulaNumber = "";
+    result = "";
+    newNumber = "";
+    formula.innerHTML = "";
+    formulaDisplay();
 }
 
 function numberInput(newNumber) {
@@ -50,31 +59,35 @@ function numberInput(newNumber) {
     // }
 
 
-    if (!(newNumber == "ac" || newNumber == "Backspace" || newNumber == "+" || newNumber == "-" || newNumber == "*" || newNumber == "/")) {
-        if (newNumber == "0" && formulaNumber.length == "0") {
-            
-        } else {
+    if (!(newNumber == "ac" || newNumber == "Backspace" || newNumber == "+" || newNumber == "-" || newNumber == "*" || newNumber == "/" || newNumber == ".")) {
+        if (!(newNumber == "0" && formulaNumber.length == "0")) {
             formulaNumber = formulaNumber + newNumber;
             result = eval(formulaNumber);
             formulaDisplay();
         }
     }
-    if (newNumber == "+" || newNumber == "-" || newNumber == "*" || newNumber == "/") {
+    if (newNumber == "+" || newNumber == "-" || newNumber == "*" || newNumber == "/" || newNumber == ".") {
         formulaNumber = formulaNumber + newNumber;
         formulaDisplay();
     }
     if (newNumber == "Backspace") {
-        formulaNumber = Math.floor(formulaNumber / 10);
-        result = eval(formulaNumber);
-        formulaDisplay();
+        if (formulaNumber.length == "1" || formulaNumber == "") {
+            formulaDisplayReset();
+        } else {
+            formulaNumber = formulaNumber.slice(0, -1);
+            if ((formulaNumber.slice(-1) == "+" || formulaNumber.slice(-1) == "-" || formulaNumber.slice(-1) == "*" || formulaNumber.slice(-1) == "/") || formulaNumber.slice(-1) == ".") {
+                formulaDisplay();
+            } else {
+                result = eval(formulaNumber.slice(0, -1));
+                result = eval(formulaNumber);
+                formulaDisplay();
+            }
+        }
     }
     if (newNumber == "ac") {
-        formulaNumber = "";
-        result = "";
-        newNumber = "";
-        formula.innerHTML = "";
-        formulaDisplay();
+        formulaDisplayReset();
     }
+    console.log(`formulaNumber : ${formulaNumber}`);
 
     // if (newNumber == "Backspace") {
     //     formulaNumber = Math.floor(formulaNumber / 10);
@@ -227,6 +240,15 @@ division.addEventListener("click", () => {
 window.addEventListener("keydown", (event) => {
     if (event.key === "/") {
         numberInput("/");
+    }
+});
+
+decimalPoint.addEventListener("click", () => {
+    numberInput(".");
+});
+window.addEventListener("keydown", (event) => {
+    if (event.key === ".") {
+        numberInput(".");
     }
 });
 
