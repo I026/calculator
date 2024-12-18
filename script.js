@@ -37,6 +37,11 @@ function formulaDisplay() {
     // 式の計算結果を表示
 }
 
+function equalDisplay() {
+    formula.innerHTML = `<span class="fomula-only">${result}</span><br><span class="result">${result}</span>`;
+    // 式の計算結果を表示
+}
+
 function formulaDisplayReset() {
     formulaNumber = "";
     result = "";
@@ -46,226 +51,367 @@ function formulaDisplayReset() {
 }
 
 function numberInput(newNumber) {
-    document.body.classList.remove("equal");
     // styleをリセット
+    document.body.classList.remove("equal");
 
-    // if (newNumber == "Backspace") {
-    //     formulaNumber = Math.floor(formulaNumber / 10);
-    // } else if (newNumber == "ac") {
-    //     formulaNumber = formulaNumber + newNumber;
-    // } else {
-    //     result = eval(formulaNumber);
-    //     formulaNumber = formulaNumber + newNumber;
-    // }
-
-
-    if (!(newNumber == "ac" || newNumber == "Backspace" || newNumber == "+" || newNumber == "-" || newNumber == "*" || newNumber == "/" || newNumber == ".")) {
-        if (!(newNumber == "0" && formulaNumber.length == "0")) {
+    // 数字入力
+    if (newNumber == "0" || newNumber == "1" || newNumber == "2" || newNumber == "3" || newNumber == "4" || newNumber == "5" || newNumber == "6" || newNumber == "7" || newNumber == "8" || newNumber == "9") {
+        if (!(formulaNumber == "0" && formulaNumber.slice(-1) == "0")) {
             formulaNumber = formulaNumber + newNumber;
             result = eval(formulaNumber);
             formulaDisplay();
-        }
-    }
-    if (newNumber == "+" || newNumber == "-" || newNumber == "*" || newNumber == "/" || newNumber == ".") {
+        } else {
+            formulaNumber = formulaNumber + newNumber;
+            result = eval(formulaNumber);
+            formulaNumber = newNumber;
+            formulaDisplay();
+        };
+    };
+
+    // 演算記号入力
+    if (newNumber == "+" || newNumber == "-" || newNumber == "*" || newNumber == "/" || newNumber == "." || newNumber == "equal") {
         formulaNumber = formulaNumber + newNumber;
         formulaDisplay();
     }
+
+    // Backspace
     if (newNumber == "Backspace") {
         if (formulaNumber.length == "1" || formulaNumber == "") {
             formulaDisplayReset();
         } else {
             formulaNumber = formulaNumber.slice(0, -1);
-            if ((formulaNumber.slice(-1) == "+" || formulaNumber.slice(-1) == "-" || formulaNumber.slice(-1) == "*" || formulaNumber.slice(-1) == "/") || formulaNumber.slice(-1) == ".") {
+            if (formulaNumber.slice(-1) == "+" || formulaNumber.slice(-1) == "-" || formulaNumber.slice(-1) == "*" || formulaNumber.slice(-1) == "/" || formulaNumber.slice(-1) == ".") {
                 formulaDisplay();
             } else {
-                result = eval(formulaNumber.slice(0, -1));
                 result = eval(formulaNumber);
                 formulaDisplay();
-            }
-        }
-    }
+            };
+        };
+    };
+
+    // AC
     if (newNumber == "ac") {
         formulaDisplayReset();
-    }
-    console.log(`formulaNumber : ${formulaNumber}`);
+    };
 
-    // if (newNumber == "Backspace") {
-    //     formulaNumber = Math.floor(formulaNumber / 10);
-    //     newNumber = "";
-    // } else if (newNumber == "ac") {
-    //     formulaNumber = "";
-    //     result = "";
-    //     newNumber = "";
-    //     formula.innerHTML = "";
-    // } else {
-    //     result = eval(formulaNumber);
-    //     formulaNumber = formulaNumber + newNumber;
-    //     // 新たな桁を追加
-    // }
+    // equal
+    if (newNumber == "equal") {
+        formulaNumber = String(result);
+        equalDisplay();
+    };
 
-
-
-    console.log(`${formulaNumber} = ${result}`);
+    console.log(`
+        formulaNumber (式)          : ${formulaNumber}
+        newNumber     (直前に入力)  : ${newNumber}
+        result        (解)          : ${result}
+        `);
 };
 
-ac.addEventListener("click", () => {
+const pushBackgorundColor = "rgb(50, 50, 50)";
+
+function pushAc() {
     numberInput("ac");
+    ac.style.backgroundColor = pushBackgorundColor;
+    setInterval(() => {
+        ac.style.backgroundColor = "transparent";
+    },100);
+};
+
+function pushN0() {
+    numberInput("0");
+    n0.style.backgroundColor = pushBackgorundColor;
+    setInterval(() => {
+        n0.style.backgroundColor = "transparent";
+    },100);
+};
+
+function pushN1() {
+    numberInput("1");
+    n1.style.backgroundColor = pushBackgorundColor;
+    setInterval(() => {
+        n1.style.backgroundColor = "transparent";
+    },100);
+};
+
+function pushN2() {
+    numberInput("2");
+    n2.style.backgroundColor = pushBackgorundColor;
+    setInterval(() => {
+        n2.style.backgroundColor = "transparent";
+    },100);
+};
+
+function pushN3() {
+    numberInput("3");
+    n3.style.backgroundColor = pushBackgorundColor;
+    setInterval(() => {
+        n3.style.backgroundColor = "transparent";
+    },100);
+};
+
+function pushN4() {
+    numberInput("4");
+    n4.style.backgroundColor = pushBackgorundColor;
+    setInterval(() => {
+        n4.style.backgroundColor = "transparent";
+    },100);
+};
+
+function pushN5() {
+    numberInput("5");
+    n5.style.backgroundColor = pushBackgorundColor;
+    setInterval(() => {
+        n5.style.backgroundColor = "transparent";
+    },100);
+};
+
+function pushN6() {
+    numberInput("6");
+    n6.style.backgroundColor = pushBackgorundColor;
+    setInterval(() => {
+        n6.style.backgroundColor = "transparent";
+    },100);
+};
+
+function pushN7() {
+    numberInput("7");
+    n7.style.backgroundColor = pushBackgorundColor;
+    setInterval(() => {
+        n7.style.backgroundColor = "transparent";
+    },100);
+};
+
+function pushN8() {
+    numberInput("8");
+    n8.style.backgroundColor = pushBackgorundColor;
+    setInterval(() => {
+        n8.style.backgroundColor = "transparent";
+    },100);
+};
+
+function pushN9() {
+    numberInput("9");
+    n9.style.backgroundColor = pushBackgorundColor;
+    setInterval(() => {
+        n9.style.backgroundColor = "transparent";
+    },100);
+};
+
+function pushAddition() {
+    numberInput("+");
+    addition.style.backgroundColor = pushBackgorundColor;
+    setInterval(() => {
+        addition.style.backgroundColor = "transparent";
+    },100);
+};
+
+function pushSubtraction() {
+    numberInput("+");
+    subtraction.style.backgroundColor = pushBackgorundColor;
+    setInterval(() => {
+        subtraction.style.backgroundColor = "transparent";
+    },100);
+};
+
+function pushDivision() {
+    numberInput("/");
+    division.style.backgroundColor = pushBackgorundColor;
+    setInterval(() => {
+        division.style.backgroundColor = "transparent";
+    },100);
+};
+
+function pushMultiply() {
+    numberInput("*");
+    multiply.style.backgroundColor = pushBackgorundColor;
+    setInterval(() => {
+        multiply.style.backgroundColor = "transparent";
+    },100);
+};
+
+function pushDecimalPoint() {
+    numberInput(".");
+    decimalPoint.style.backgroundColor = pushBackgorundColor;
+    setInterval(() => {
+        decimalPoint.style.backgroundColor = "transparent";
+    },100);
+};
+
+function pushBackspace() {
+    numberInput("Backspace");
+    backspace.style.backgroundColor = pushBackgorundColor;
+    setInterval(() => {
+        backspace.style.backgroundColor = "transparent";
+    },100);
+};
+
+function pushEqual() {
+    numberInput("equal");
+    equal.style.backgroundColor = pushBackgorundColor;
+    setInterval(() => {
+        equal.style.backgroundColor = "transparent";
+    },100);
+};
+
+
+ac.addEventListener("click", () => {
+    pushAc();
 });
 window.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-        numberInput("ac");
+    if (event.key === "Escape" || event.key === "c") {
+        pushAc();
     }
 });
 
 n0.addEventListener("click", () => {
-    numberInput("0");
+    pushN0();
 });
 window.addEventListener("keydown", (event) => {
     if (event.key === "0") {
-        numberInput("0");
+        pushN0();
     }
 });
- 
+
 n1.addEventListener("click", () => {
-    numberInput("1");
+    pushN1();
 });
 window.addEventListener("keydown", (event) => {
     if (event.key === "1") {
-        numberInput("1");
+        pushN1();
     }
 });
- 
+
 n2.addEventListener("click", () => {
-    numberInput("2");
+    pushN2();
 });
 window.addEventListener("keydown", (event) => {
     if (event.key === "2") {
-        numberInput("2");
+        pushN2();
     }
 });
- 
+
 n3.addEventListener("click", () => {
-    numberInput("3");
+    pushN3();
 });
 window.addEventListener("keydown", (event) => {
     if (event.key === "3") {
-        numberInput("3");
+        pushN3();
     }
 });
- 
+
 n4.addEventListener("click", () => {
-    numberInput("4");
+    pushN4();
 });
 window.addEventListener("keydown", (event) => {
     if (event.key === "4") {
-        numberInput("4");
+        pushN4();
     }
 });
- 
+
 n5.addEventListener("click", () => {
-    numberInput("5");
+    pushN5();
 });
 window.addEventListener("keydown", (event) => {
     if (event.key === "5") {
-        numberInput("5");
+        pushN5();
     }
 });
- 
+
 n6.addEventListener("click", () => {
-    numberInput("6");
+    pushN6();
 });
 window.addEventListener("keydown", (event) => {
     if (event.key === "6") {
-        numberInput("6");
+        pushN6();
     }
 });
- 
+
 n7.addEventListener("click", () => {
-    numberInput("7");
+    pushN7();
 });
 window.addEventListener("keydown", (event) => {
     if (event.key === "7") {
-        numberInput("7");
+        pushN7();
     }
 });
- 
+
 n8.addEventListener("click", () => {
-    numberInput("8");
+    pushN8();
 });
 window.addEventListener("keydown", (event) => {
     if (event.key === "8") {
-        numberInput("8");
+        pushN8();
     }
 });
- 
+
 n9.addEventListener("click", () => {
-    numberInput("9");
+    pushN9();
 });
 window.addEventListener("keydown", (event) => {
     if (event.key === "9") {
-        numberInput("9");
+        pushN9();
     }
 });
- 
+
 addition.addEventListener("click", () => {
-    numberInput("+");
+    pushAddition();
 });
 window.addEventListener("keydown", (event) => {
     if (event.key === "+") {
-        numberInput("+");
+        pushAddition();
     }
 });
- 
+
 subtraction.addEventListener("click", () => {
-    numberInput("-");
+    pushSubtraction();
 });
 window.addEventListener("keydown", (event) => {
     if (event.key === "-") {
-        numberInput("-");
+        pushSubtraction();
     }
 });
- 
+
 multiply.addEventListener("click", () => {
-    numberInput("*");
+    pushMultiply();
 });
 window.addEventListener("keydown", (event) => {
     if (event.key === "*") {
-        numberInput("*");
+        pushMultiply();
     }
 });
 
 division.addEventListener("click", () => {
-    numberInput("/");
+    pushDivision();
 });
 window.addEventListener("keydown", (event) => {
     if (event.key === "/") {
-        numberInput("/");
+        pushDivision();
     }
 });
 
 decimalPoint.addEventListener("click", () => {
-    numberInput(".");
+    pushDecimalPoint();
 });
 window.addEventListener("keydown", (event) => {
     if (event.key === ".") {
-        numberInput(".");
+        pushDecimalPoint();
     }
 });
 
 backspace.addEventListener("click", () => {
-    numberInput("Backspace");
+    pushBackspace();
 });
 window.addEventListener("keydown", (event) => {
     if (event.key === "Backspace") {
-        numberInput("Backspace");
+        pushBackspace();
     }
 });
 
 equal.addEventListener("click", () => {
-    document.body.classList.add("equal");
+    pushEqual();
 });
 window.addEventListener("keydown", (event) => {
-    if (event.key === "=" ||event.key === "Enter") {
-        document.body.classList.add("equal");
+    if (event.key === "=" || event.key === "Enter") {
+        pushEqual();
     }
 });
