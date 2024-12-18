@@ -206,7 +206,7 @@ function pushAddition() {
 };
 
 function pushSubtraction() {
-    numberInput("+");
+    numberInput("-");
     subtraction.style.backgroundColor = pushBackgorundColor;
     setInterval(() => {
         subtraction.style.backgroundColor = "transparent";
